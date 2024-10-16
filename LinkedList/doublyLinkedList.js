@@ -38,6 +38,20 @@ class DoublyLinkedList {
             this.head = newNode
         }
     }
+
+    //* remove last node
+    removeLast(){
+        if(!this.tail){
+            return;
+        }
+        if(this.tail === this.head){
+            this.head = null;
+            this.tail = null;
+        }else{
+            this.tail = this.tail.prev;
+            this.tail.next = null
+        }
+    }
     
     displayNode(){
         let current = this.head;
@@ -60,4 +74,7 @@ dll.insert(6)
 dll.displayNode()
 
 dll.prepend(18)
+dll.displayNode()
+
+dll.removeLast();
 dll.displayNode()
