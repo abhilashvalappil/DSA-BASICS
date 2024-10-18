@@ -57,6 +57,42 @@ class SinglyLinkedList {
         }
     }
 
+    //*** find middle node
+    middle(){
+        if(!this.head){
+            return;
+        }
+        let slow = this.head;
+        let fast = this.head;
+        
+        while(fast && fast.next){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+    
+    //* remove middle
+    removeMiddle(){
+        if(!this.head){
+            return;
+        }
+        if(!this.head.next){
+            this.head = null;
+            return;
+        }
+        let middle = this.middle();
+        let current = this.head;
+        while(current && current.next){
+            if(current.next === middle){
+                current.next = current.next.next
+                return;
+            }else{
+                current = current.next
+        }
+    }
+    }
+
     //* array to linkedlist
     arrToLinkedList(arr){
         if(arr.length === 0){

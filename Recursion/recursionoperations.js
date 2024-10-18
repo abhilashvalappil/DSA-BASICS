@@ -74,6 +74,21 @@ function oddSum(arr){
 console.log(oddSum(array))
 
 
+//**** odd num sum **********
+function oddArrSum(arr,index = 0){
+    if(index === arr.length){
+        return 0;
+    }
+    if(arr[index] % 2 !== 0){
+        return arr[index] + oddSum(arr,index+1)
+    }else{
+        return oddSum(arr,index+1)
+    }
+}
+
+console.log(oddArrSum(array))
+
+
 
 //**** Even num sum *******
 
@@ -127,7 +142,7 @@ console.log(reverseArr(arraynums))
 
 //******** reverse array and elements ******* 
 
-function reverseArrAndElements(arr, start = 0 , end= nums.length-1){
+function reverseArrAndElements(arr, start = 0 , end= arr.length-1){
     if(start >= end){
         return arr;
     }
