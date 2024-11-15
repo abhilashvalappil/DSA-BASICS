@@ -54,7 +54,7 @@ function stringSort(arr){
         for(let j=0; j<arr.length-1-i; j++){
             if(arr[j].length > arr[j+1].length){
                 [arr[j],arr[j+1]] = [arr[j+1],arr[j]]
-                let swapped = true;
+                 swapped = true;
             }
         }
         if(swapped === false) break;
@@ -125,6 +125,28 @@ let numbers = [8,12,14,10]
 console.log(SortArray(numbers));
 
 
+// ********* find min and max from array insertion sort
+function findMinMax(arr){
+    let min = arr[0];
+        let max = arr[0]
+    for(let i=1; i<arr.length; i++){
+        
+        if(arr[i] < min){
+            min = arr[i]
+        }
+        
+        if(arr[i] > max){
+            max = arr[i]
+        }
+    }
+    return {min,max}
+}
+  
+ 
+let element = [8,12,5,11,14,10];
+console.log(findMinMax(element))
+
+
 
 //***** selection sort
 function selectionsort(arr){
@@ -148,3 +170,93 @@ function selectionsort(arr){
 
 let nums = [12, 11, 24, 18, 2, 6];
 console.log(selectionsort(nums));
+
+
+//* k th samllest element selection sort **
+function kthSmallest(arr,k){
+    for(let i=0; i<arr.length-1; i++){
+        let minIndex = i;
+        
+        for(let j=i+1; j<arr.length; j++){
+            if(arr[j] < arr[minIndex]){
+                minIndex = j;
+            }
+        }
+        if(minIndex !== i){
+            let temp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = temp;
+        }
+    }
+    return arr[k-1]
+}
+
+let elements = [7, 10, 4, 3, 20, 15];
+let k = 3;
+console.log(kthSmallest(elements,k))
+
+
+
+//***** merge sort
+function mergeSort(arr){
+    if(arr.length <= 1){
+        return arr;
+    }
+    
+    const mid = Math.floor(arr.length/2);
+    
+    let left = arr.slice(0,mid);
+    let right = arr.slice(mid);
+    
+    let sortedLeft = mergeSort(left);
+    let sortedRight = mergeSort(right);
+    
+    return merge(sortedLeft,sortedRight)
+}
+
+function merge(left,right){
+    let res = [];
+    
+    let i=0;
+    let j=0;
+    
+    while(i<left.length && j<right.length){
+        if(left[i] < right[j]){
+            res.push(left[i]);
+            i++;
+        }else{
+            res.push(right[j]);
+            j++;
+        }
+    }
+    return res.concat(left.slice(i)).concat(right.slice(j))
+}
+
+let digits = [7,12,8,15,3,1,5,20];
+console.log(mergeSort(digits))
+
+
+
+//******* quick sort
+function quickSort(arr){
+    if(arr.length <= 1){
+        return arr;
+    }
+    
+    let pivot = arr[arr.length - 1];
+    let left = [];
+    let right = [];
+    
+    for(let i=0; i<arr.length-1; i++){
+        if(arr[i] < pivot){
+            left.push(arr[i]);
+            i++;
+        }else{
+            right.push(arr[i])
+        }
+    }
+    return [...quickSort(left),pivot,...quickSort(right)]
+}
+
+let arrNums = [7,12,25,36,1,5,20];
+console.log(quickSort(arrNums))
