@@ -2,7 +2,7 @@ class Node {
     constructor(data){
         this.data = data;
         this.next = null;
-    }
+    }   
 }
 
 class SinglyLinkedList {
@@ -56,6 +56,20 @@ class SinglyLinkedList {
             current.next = current.next.next
         }
     }
+    //* remove Even nodes
+    removeEven(data){
+        while(this.head && this.head.data % 2 == 0){
+            this.head = this.head.next;
+        }
+        let current = this.head;
+        while(current && current.next){
+            if(current.next.data % 2 == 0){
+                current.next = current.next.next
+            }else{
+                current = current.next
+            }
+        }
+    }
 
     //*** find middle node
     middle(){
@@ -91,6 +105,36 @@ class SinglyLinkedList {
                 current = current.next
         }
     }
+    }
+
+    //** remove middle my codeeeeeeeeeeeee */
+    removeMiddle(){
+        if(!this.head) return;
+        if(!this.head.next){
+            this.head = null
+            return;
+        }
+        let middle = this.middle();
+        let current = this.head;
+        while(current.next && current.next !== middle){
+            current = current.next;
+        }
+        current.next = current.next.next;
+    }
+    //* reverse simple code
+    reverse(){
+        if(!this.head) return;
+        let current = this.head;
+        let prev = null;
+        let next = null;
+        
+        while(current){
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        this.head = prev;
     }
 
     //* array to linkedlist

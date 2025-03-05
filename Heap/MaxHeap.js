@@ -1,88 +1,98 @@
 
 // //******* MaxHeap
-// class MaxHeap {
-//     constructor(){
-//         this.heap = [];
-//     }
+class MaxHeap {
+    constructor(){
+        this.heap = [];
+    }
     
-//     swap(i,j){
-//         [this.heap[i],this.heap[j]] = [this.heap[j],this.heap[i]]
-//     }
+    swap(i,j){
+        [this.heap[i],this.heap[j]] = [this.heap[j],this.heap[i]]
+    }
     
-//     parent(i){
-//         return Math.floor((i-1)/2);
-//     }
-//     leftchild(i){
-//         return 2 * i +1;
-//     }
-//     rightchild(i){
-//         return 2 * i +2;
-//     }
+    parent(i){
+        return Math.floor((i-1)/2);
+    }
+    leftchild(i){
+        return 2 * i +1;
+    }
+    rightchild(i){
+        return 2 * i +2;
+    }
     
-//     insert(value){
-//         this.heap.push(value);
-//         this.heapifyUp(this.heap.length-1)
-//     }
+    insert(value){
+        this.heap.push(value);
+        this.heapifyUp(this.heap.length-1)
+    }
     
-//     heapifyUp(index){
-//         let currentIndex = index;
-//         let parentIndex = this.parent(currentIndex)
+    heapifyUp(index){
+        let currentIndex = index;
+        let parentIndex = this.parent(currentIndex)
         
-//         while(currentIndex > 0 && this.heap[currentIndex] > this.heap[parentIndex]){
-//             this.swap(currentIndex,parentIndex);
-//             currentIndex = parentIndex;
-//             parentIndex = this.parent(currentIndex)
-//         }
-//     }
+        while(currentIndex > 0 && this.heap[currentIndex] > this.heap[parentIndex]){
+            this.swap(currentIndex,parentIndex);
+            currentIndex = parentIndex;
+            parentIndex = this.parent(currentIndex)
+        }
+    }
     
-//     extractMax(){
-//         if(this.heap.length === 0) return null;
-//         if(this.heap.length === 1) return this.heap.pop();
+    extractMax(){
+        if(this.heap.length === 0) return null;
+        if(this.heap.length === 1) return this.heap.pop();
         
-//         const max = this.heap[0];
-//         this.heap[0] = this.heap.pop();
-//         this.heapifyDown(0);
-//         return max;
-//     }
+        const max = this.heap[0];
+        this.heap[0] = this.heap.pop();
+        this.heapifyDown(0);
+        return max;
+    }
     
-//     heapifyDown(index){
-//         let largest = index;
-//         const left = this.leftchild(index);
-//         const right = this.rightchild(index);
+    heapifyDown(index){
+        let largest = index;
+        const left = this.leftchild(index);
+        const right = this.rightchild(index);
         
-//         if(left < this.heap.length && this.heap[left] > this.heap[largest]){
-//             largest = left;
-//         }
+        if(left < this.heap.length && this.heap[left] > this.heap[largest]){
+            largest = left;
+        }
         
-//         if(right < this.heap.length && this.heap[right] > this.heap[largest]){
-//             largest = right;
-//         }
+        if(right < this.heap.length && this.heap[right] > this.heap[largest]){
+            largest = right;
+        }
         
-//         if(largest !== index){
-//             this.swap(index,largest);
-//             this.heapifyDown(largest)
-//         }
-//     }
-//     peek(){
-//         return this.heap.length > 0 ? this.heap[0] : null;
-//     }
-//     printHeap(){
-//         console.log(this.heap)
-//     }
-// }
+        if(largest !== index){
+            this.swap(index,largest);
+            this.heapifyDown(largest)
+        }
+    }
+    heapsort(arr){
+        for(let i=0; i<arr.length; i++){
+            this.insert(arr[i])
+        }
+        let sorted = [];
+        for(let i=0; i<arr.length; i++){
+            sorted.unshift(this.extractMax())
+        }
+        return sorted;
+    }
+    peek(){
+        return this.heap.length > 0 ? this.heap[0] : null;
+    }
+    printHeap(){
+        console.log(this.heap)
+    }
+}
 
-// const maxHeap = new MaxHeap();
-// maxHeap.insert(10);
-// maxHeap.insert(20);
-// maxHeap.insert(5);
-// maxHeap.insert(6);
-// maxHeap.insert(1);
-// maxHeap.insert(8);
+const maxHeap = new MaxHeap();
+maxHeap.insert(10);
+maxHeap.insert(20);
+maxHeap.insert(5);
+maxHeap.insert(6);
+maxHeap.insert(1);
+maxHeap.insert(8);
 
-// maxHeap.printHeap();
-// console.log(maxHeap.extractMax());
+maxHeap.printHeap();
+console.log(maxHeap.extractMax());
 
-// maxHeap.printHeap();
+maxHeap.printHeap();
 
 
 

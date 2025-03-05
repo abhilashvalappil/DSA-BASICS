@@ -34,6 +34,23 @@ class SinglyLinkedList {
         }
     }
 
+    //* remove duplicates from a unsorted linked list
+    removeDuplicatesUnsorted(){
+    let seen = new Set();
+    let current = this.head;
+    let prev = null;
+
+    while(current){
+        if(seen.has(current.data)){
+            prev.next = current.next;
+        }else{
+            seen.add(current.data)
+            prev = current;
+        }
+        current = current.next;
+    }
+}
+
     printList(){
         const elements = []
         let current = this.head;

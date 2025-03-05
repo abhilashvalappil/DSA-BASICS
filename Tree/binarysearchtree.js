@@ -92,6 +92,40 @@ class BST{
         }
         return parent.value;
     }
+
+    //* find third largest
+    find3rdLargest(){
+        let values = [];
+        
+        function inOrder(node){
+            if(!node || values.length >= 3) return;
+            inOrder(node.right);
+            values.push(node.value)
+            inOrder(node.left)
+        }
+        inOrder(this.root);
+        return values[2] ?? null;
+    }
+    
+    //* third largest
+    findThirdLargest(){
+        let stack = [];
+        let current = this.root;
+        let count = 0;
+        
+        while(stack.length > 0 || current !== null){
+            while(current !== null){
+                stack.push(current)
+                current = current.right
+            }
+            current = stack.pop();
+            count++;
+            if(count == 3) return current.value
+            
+            current = current.left
+        }
+        return null;
+    }
 }
 const bst = new BST();
 bst.insert(50);
@@ -160,7 +194,7 @@ class BinarySearchTree {
     delete(value){
         this.root = this.deleteNode(this.root,value)
     }
-    deleteNode(node,value){
+    deleteNode(node,value){ 
         if(!node) return null;
         if(value < node.value){
             node.left = this.deleteNode(node.left,value)
@@ -185,6 +219,63 @@ class BinarySearchTree {
             node = node.left;
         }
         return node;
+    }
+    //*find height(recursion approach)
+    findHeight(node = this.root){
+        if(!node) return -1;
+        let leftHeight = this.findHeight(node.left);
+        let rightHeight = this.findHeight(node.right);
+
+        return 1 + Math.max(leftHeight,rightHeight)
+    }
+
+    //* find Height (without recursion approach)
+    findHeight(){
+        if(!this.root) return -1;
+        
+        let queue = [this.root];
+        let height = -1;
+
+        while(queue.length > 0){
+            let levelsize = queue.length;
+
+            for(let i=0; i<levelsize; i++){
+                let current = queue.shift();
+
+                if(current.left) queue.push(current.left);
+                if(current.right) queue.push(current.right);
+            }
+            height++;
+        }
+        return height;
+    }
+
+    //* count leaf nodes (with recursion)
+    countLeafNodes(node = this.root){
+        if(!node) return 0;
+        if(!node.left && !node.right) return 1;
+
+        return this.countLeafNodes(node.left) + this.countLeafNodes(node.right);                                                                                                                
+    }
+
+    //* count leaf Nodes ( without recursion)
+    countLeafNodes(){
+        if(!this.root) return 0;
+
+        let queue = [this.root];
+        let leafcount = 0;
+
+        while(queue.length > 0){
+            let current = queue.shift();
+
+            if(!current.left && ! current.right){
+                leafcount++;
+            }
+
+            if(current.left) queue.push(current.left);
+            if(current.right) queue.push(current.right);
+        }
+        return leafcount;
     }
 }
 const bst = new BinarySearchTree();

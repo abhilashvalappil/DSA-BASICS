@@ -68,6 +68,23 @@ class DoublyLinkedList {
       this.head = temp.prev;
     }
     }
+
+    //* SIMPLE CODE TO REVERSE
+    reverse() {
+        let current = this.head;
+        let prev = null;
+    
+        while (current) {
+            let next = current.next; // Store next node
+            current.next = prev;     // Reverse next pointer
+            current.prev = next;     // Reverse prev pointer
+            prev = current;          // Move prev to current
+            current = next;          // Move current to next
+        }
+        
+        this.head = prev; // Update head to the last node (new head)
+    }
+    
     
     displayNode(){
         let current = this.head;

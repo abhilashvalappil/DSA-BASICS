@@ -163,3 +163,18 @@ function reverseDigits(num){
 nums = [123, 456, 789, 10];
 
 console.log(reverseArrAndElements(nums))
+
+
+//* find odd sum and change non-odd to zero
+function oddSum(arr,index=0,sum=0){
+    if(index == arr.length) return sum;
+    
+    if(arr[index] % 2 !== 0){
+        sum += arr[index]
+    }else{
+        arr[index] = 0;
+    }
+    return oddSum(arr,index+1,sum)
+}
+console.log(oddSum(array))
+console.log(array)

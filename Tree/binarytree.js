@@ -1,4 +1,4 @@
-// **** Binary tree implementation
+// **** Binary search tree implementation
 class Node {
     constructor(value){
         this.value = value;
@@ -7,7 +7,7 @@ class Node {
     }
 }
 
-class BinaryTree {
+class BinarySearchTree {
     constructor(){
         this.root = null;
     }
@@ -59,7 +59,7 @@ class BinaryTree {
     }
 }
 
-const tree = new BinaryTree();
+const tree = new BinarySearchTree();
 tree.insert(5);
 tree.insert(8);
 tree.insert(2);
@@ -76,6 +76,97 @@ tree.preOrderTraversal();
 
 console.log("Post-order Traversal:");
 tree.postOrderTraversal();
+
+
+//*** Binary Tree implementation
+class Node {
+    constructor(value) {
+        this.value = value;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+class BinaryTree {
+    constructor() {
+        this.root = null;
+    }
+
+    // Insert in level-order (BFS)
+    insert(value) {
+        const newNode = new Node(value);
+        if (!this.root) {
+            this.root = newNode;
+            return;
+        }
+
+        let queue = [this.root];
+
+        while (queue.length) {
+            let current = queue.shift();  
+
+            if (!current.left) {
+                current.left = newNode;
+                return;
+            } else {
+                queue.push(current.left);
+            }
+
+            if (!current.right) {
+                current.right = newNode;
+                return;
+            } else {
+                queue.push(current.right);
+            }
+        }
+    }
+
+    // In-order Traversal (Left → Root → Right)
+    inOrderTraversal(node = this.root) {
+        if (node) {
+            this.inOrderTraversal(node.left);
+            console.log(node.value);
+            this.inOrderTraversal(node.right);
+        }
+    }
+
+    // Pre-order Traversal (Root → Left → Right)
+    preOrderTraversal(node = this.root) {
+        if (node) {
+            console.log(node.value);
+            this.preOrderTraversal(node.left);
+            this.preOrderTraversal(node.right);
+        }
+    }
+
+    // Post-order Traversal (Left → Right → Root)
+    postOrderTraversal(node = this.root) {
+        if (node) {
+            this.postOrderTraversal(node.left);
+            this.postOrderTraversal(node.right);
+            console.log(node.value);
+        }
+    }
+}
+
+ 
+const tree = new BinaryTree();
+tree.insert(1);
+tree.insert(2);
+tree.insert(3);
+tree.insert(4);
+tree.insert(5);
+tree.insert(6);
+tree.insert(7);
+
+console.log("In-order Traversal:");
+tree.inOrderTraversal(); 
+
+console.log("\nPre-order Traversal:");
+tree.preOrderTraversal(); 
+
+console.log("\nPost-order Traversal:");
+tree.postOrderTraversal();  
 
 
 
