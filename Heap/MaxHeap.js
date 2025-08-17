@@ -64,8 +64,10 @@ class MaxHeap {
         }
     }
     heapsort(arr){
+        const tempHeap = new MaxHeap();
+        
         for(let i=0; i<arr.length; i++){
-            this.insert(arr[i])
+            tempHeap.insert(arr[i])
         }
         let sorted = [];
         for(let i=0; i<arr.length; i++){
@@ -108,10 +110,10 @@ class MinHeap {
         return Math.floor((i-1)/2)
     }
     leftChild(i){
-        return i * 2 +1;
+        return 2 * i +1;
     }
     rightChild(i){
-        return i * 2 +2;
+        return 2 * i +2;
     }
     
     insert(value){
@@ -176,46 +178,46 @@ class MinHeap {
     }
 }
 
-// function findKLargest(arr,k){
-//     const heap = new MinHeap();
+//* function findKLargest(arr,k){
+    const heap = new MinHeap();
     
-//     for(let i=0; i<arr.length; i++){
-//         if(heap.size() < k){
-//             heap.insert(arr[i])
-//         }else if(arr[i] > heap.peek()){
-//             heap.extractMin();
-//             heap.insert(arr[i])
-//         }
-//     }
-//     return heap.heap;
-// }
+    for(let i=0; i<arr.length; i++){
+        if(heap.size() < k){
+            heap.insert(arr[i])
+        }else if(arr[i] > heap.peek()){
+            heap.extractMin();
+            heap.insert(arr[i])
+        }
+    }
+    return heap.heap;
+}
 
-const value = [10, 4, 3, 50, 23, 90];
+const values = [10, 4, 3, 50, 23, 90];
 
 const Heap = new MinHeap();
-console.log(Heap.heapSort(value));
+console.log(Heap.heapSort(values));
 // const k = 3;
 // console.log(findKLargest(arr, k));
 
 
 
-// ***** find kth largest element
-// function findKthLargest(arr,k){
-//     let heap = new MinHeap();
-//     for(let i=0; i<arr.length; i++){
-//         if(heap.size() < k){
-//             heap.insert(arr[i])
-//         }else if(arr[i] > heap.peek()){
-//             heap.extractMin();
-//             heap.insert(arr[i])
-//         }
-//     }
-//     return heap.peek()
-// }
+// ** find kth largest element
+function findKthLargest(arr,k){
+    let heap = new MinHeap();
+    for(let i=0; i<arr.length; i++){
+        if(heap.size() < k){
+            heap.insert(arr[i])
+        }else if(arr[i] > heap.peek()){
+            heap.extractMin();
+            heap.insert(arr[i])
+        }
+    }
+    return heap.peek()
+}
 
-// const arr = [10, 4, 3, 50, 23, 90];
-// const k = 3;
-// console.log(findKthLargest(arr, k));
+const arr = [10, 4, 3, 50, 23, 90];
+const k = 3;
+console.log(findKthLargest(arr, k));
 
 
 

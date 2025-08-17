@@ -57,7 +57,7 @@ class SinglyLinkedList {
         }
     }
     //* remove Even nodes
-    removeEven(data){
+    removeEven(){
         while(this.head && this.head.data % 2 == 0){
             this.head = this.head.next;
         }
@@ -121,6 +121,7 @@ class SinglyLinkedList {
         }
         current.next = current.next.next;
     }
+    
     //* reverse simple code
     reverse(){
         if(!this.head) return;

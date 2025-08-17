@@ -50,6 +50,23 @@ console.log("stack after pop"+ stack.peek())
 
 
 
+//* sort stack
+sortStack(){
+    let tempstack = new Stack();
+    
+    while(!this.isEmpty()){
+        let current = this.pop();
+        
+        while(!tempstack.isEmpty() && tempstack.peek() > current){
+            this.stack.push(tempstack.pop())
+        }
+        tempstack.push(current)
+    }
+    return tempstack;
+}
+
+
+
 //**** function to sort ****
 
 function sortStack(originalstack){

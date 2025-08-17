@@ -77,13 +77,14 @@ console.log(trie.startsWith("hel"));
     }
 
       // Helper function to find words
-      findWords(node, prefix, suggestions) {
+      dfs(node, prefix, suggestions) {
         if (node.isEndOfWord) suggestions.push(prefix);
 
         for (let char in node.children) {
-            this.findWords(node.children[char], prefix + char, suggestions);
+            this.dfs(node.children[char], prefix + char, suggestions);
         }
     }
 
  
  
+//********this.dfs(node.children["e"], "appl" + "e", suggestions);

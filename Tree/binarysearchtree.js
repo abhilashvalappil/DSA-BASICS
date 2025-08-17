@@ -37,7 +37,7 @@ console.log(levelOrder(levelRoot));
 
 
 
-// ********* Find secondlargest
+// ***Find secondlargest
 class TreeNode {
     constructor(value){
         this.value = value;
@@ -125,6 +125,21 @@ class BST{
             current = current.left
         }
         return null;
+    }
+     countLeftSubtreeNodes(){
+        if(!this.root || !this.root.left) return 0;
+        const stack = [this.root.left];
+        let count = 0;
+        
+        while(stack.length){
+            let node = stack.pop();
+            count++;
+            
+            if(node.left) stack.push(node.left);
+            if(node.right) stack.push(node.right)
+            
+        }
+        return count;
     }
 }
 const bst = new BST();
@@ -290,7 +305,7 @@ bst.delete(5);
 console.log(bst.search(5));
 
 
-// *********** find the closest value to a given number in a Tree
+//*** find the closest value to a given number in a Tree
 class TreeNode {
     constructor(value) {
         this.value = value;
@@ -347,7 +362,6 @@ class BinarySearchTree {
                 return node.value;
             }
         }
-
         return closest;
     }
 }

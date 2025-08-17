@@ -25,6 +25,16 @@ class Queue {
         return this.items[0]
     }
 
+    //** Swap middle element in a queue 
+     swapMiddle(){
+        const n = this.size();
+        
+        const middle = Math.floor(n/2);
+        
+        const firstIndex = n%2 === 0 ? middle - 1 : middle;
+        [this.items[firstIndex],this.items[firstIndex+1]] = [this.items[firstIndex+1],this.items[firstIndex]]
+    }
+
     isEmpty(){
         return this.items.length === 0
     }
