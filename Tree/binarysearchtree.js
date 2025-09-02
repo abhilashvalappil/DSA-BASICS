@@ -155,7 +155,7 @@ console.log("Second largest element:", bst.findSecLargest());
 
 
 
-// ******* binary search tree
+// **** binary search tree
 class Node {
     constructor(value){
         this.value = value;

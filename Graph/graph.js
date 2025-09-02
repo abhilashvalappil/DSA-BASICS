@@ -114,51 +114,44 @@ BFS(start){
 //*** Directed graph */
 class DirectedGraph {
     constructor() {
-        this.adjacencyList = {}; // Stores vertices and their edges
+        this.adjacencyList = {};  
     }
 
-    // Add a vertex (node) to the graph
     addVertex(vertex) {
         if (!this.adjacencyList[vertex]) {
             this.adjacencyList[vertex] = [];
         }
     }
 
-    // Add a directed edge (one-way connection) from vertex1 to vertex2
-    addEdge(vertex1, vertex2) {
+     addEdge(vertex1, vertex2) {
         if (this.adjacencyList[vertex1] && this.adjacencyList[vertex2]) {
             this.adjacencyList[vertex1].push(vertex2);
         }
     }
 
-    // Remove an edge from vertex1 to vertex2
-    removeEdge(vertex1, vertex2) {
+     removeEdge(vertex1, vertex2) {
         if (this.adjacencyList[vertex1]) {
             this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(v => v !== vertex2);
         }
     }
 
-    // Remove a vertex and all its edges
-    removeVertex(vertex) {
+     removeVertex(vertex) {
         if (this.adjacencyList[vertex]) {
             delete this.adjacencyList[vertex];
-
-            // Remove this vertex from all other adjacency lists
+ 
             for (let key in this.adjacencyList) {
                 this.adjacencyList[key] = this.adjacencyList[key].filter(v => v !== vertex);
             }
         }
     }
 
-    // Display the graph
-    display() {
+     display() {
         for (let vertex in this.adjacencyList) {
             console.log(vertex + " -> " + this.adjacencyList[vertex].join(", "));
         }
     }
 }
 
-// Example usage
 const graph = new DirectedGraph();
 graph.addVertex("A");
 graph.addVertex("B");

@@ -195,3 +195,24 @@ root.right.right = new TreeNode(20);
 console.log(isValidBST(root));
 
 
+// ** isValid BST (iterative)
+function isvalidBST(){
+        let stack = [];
+        let current = this.root;
+        let prev = -Infinity;
+        
+        while(stack.length > 0 || current !== null){
+            while(current !== null){
+                stack.push(current)
+                current = current.left;
+            }
+            current = stack.pop();
+            
+            if(current.value <= prev) return false
+            
+            prev = current.value
+            current = current.right;
+        }
+        return true;
+    }
+

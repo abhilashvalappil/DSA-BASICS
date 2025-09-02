@@ -98,7 +98,7 @@ maxHeap.printHeap();
 
 
 
-//* **** Find K largest elements from Min heap
+//***** Find K largest elements from Min heap
 class MinHeap {
     constructor(){
         this.heap = [];
