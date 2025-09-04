@@ -43,6 +43,80 @@ graph.display();
 
 
 
+//**Shortest distance using BFS
+
+shortestDistance(start, end) {
+        if (!this.adjacencyList[start] || !this.adjacencyList[end]) return -1;
+
+        let queue = [[start, 0]];  
+        let visited = new Set([start]);
+
+        while (queue.length > 0) {
+            let [node, dist] = queue.shift();
+
+            if (node === end) return dist; 
+
+            for (let neighbor of this.adjacencyList[node]) {
+                if (!visited.has(neighbor)) {
+                    visited.add(neighbor);
+                    queue.push([neighbor, dist + 1]);
+                }
+            }
+        }
+
+        return -1; 
+    }
+
+    //*Detect cycle in an undirected graph
+    hasCycle(){
+        let visited = new Set();
+
+        const dfs = (vertex, parent) => {
+            visited.add(vertex);
+
+            for(let neighbor of this.adjacencyList[vertex]){
+                if(!visited.has(neighbor)){
+                    if(dfs(neighbor, vertex)) return true;
+                } else if(neighbor !== parent){
+                    return true; // cycle detected
+                }
+            }
+            return false;
+        };
+
+        for(let vertex in this.adjacencyList){
+            if(!visited.has(vertex)){
+                if(dfs(vertex, null)) return true;
+            }
+        }
+        return false;
+    }
+
+
+    //**  Shortest path using BFS
+    shortestPath(start, end) {
+        if (!this.adjacencyList[start] || !this.adjacencyList[end]) return null;
+
+        let queue = [[start]];   
+        let visited = new Set([start]);
+
+        while (queue.length) {
+            let path = queue.shift(); 
+            let node = path[path.length - 1];
+
+            if (node === end) return path;  
+
+            for (let neighbor of this.adjacencyList[node]) {
+                if (!visited.has(neighbor)) {
+                    visited.add(neighbor);
+                    queue.push([...path, neighbor]);
+                }
+            }
+        }
+        return null; 
+    }
+
+
 // ********* recursive DFS
 DFS(start){
     const result = [];

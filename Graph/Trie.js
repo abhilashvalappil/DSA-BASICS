@@ -51,7 +51,7 @@ console.log(trie.startsWith("hel"));
 
 
 
-//**** auto suggestion  ****
+//**** auto suggestion ****
     autoSuggest(prefix) {
         let node = this.root;
         for (const char of prefix) {

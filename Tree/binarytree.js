@@ -216,3 +216,28 @@ function isvalidBST(){
         return true;
     }
 
+//**** is perfect BST
+    findDepth(node){
+        let d = 0;
+        while(node){
+            d++
+            node = node.left
+        }
+        return d;
+    }
+
+    isPerfect(node=this.root,depth=null,level=1){
+        
+        if(!depth) depth = this.findDepth(this.root)
+        
+        if(!node.left && !node.right){
+            return depth === level
+        }
+        
+        if(!node.left || !node.right){
+            return false;
+        }
+        
+        return this.isPerfect(node.left, depth, level+1)&&
+        this.isPerfect(node.right,depth,level+1)
+    }
